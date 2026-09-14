@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>RIWA vs. FADEL — Official Case File</title>
+<title>AYA vs. FADEL — Official Case File</title>
 <style>
   :root{
     --bg1:#fff2f7;
@@ -375,6 +375,225 @@
     .actions{margin-top:18px}
     .court-box,.analysis-box,.apology,.sentence,.evidence-grid{margin-top:14px}
   }
+
+  /* ===== V7 MOBILE + OVERFLOW FIXES ===== */
+  html, body { width:100%; min-height:100%; }
+  body { overflow:hidden; }
+
+  .card { min-height:0; }
+  .screen {
+    overflow-y:auto;
+    overflow-x:hidden;
+    overscroll-behavior:contain;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:thin;
+  }
+
+  .screen::-webkit-scrollbar,
+  .final-letter::-webkit-scrollbar { width:5px; }
+  .screen::-webkit-scrollbar-thumb,
+  .final-letter::-webkit-scrollbar-thumb {
+    background:rgba(184,79,125,.28);
+    border-radius:999px;
+  }
+
+  /* Final page must never crop its last paragraphs */
+  .final-heart-page{
+    flex:0 0 auto;
+    align-items:start;
+  }
+  .final-letter{
+    max-height:none;
+    overflow:visible;
+  }
+  .screen[data-step="11"]{
+    justify-content:flex-start;
+    padding-top:30px;
+    padding-bottom:34px;
+  }
+  .screen[data-step="11"] .actions{
+    flex:0 0 auto;
+    padding-bottom:8px;
+  }
+
+  @media (max-width:760px){
+    body{overflow:hidden}
+
+    .shell{
+      height:100svh;
+      min-height:100svh;
+      padding:8px;
+      overflow:hidden;
+    }
+
+    .case-wrap{
+      width:100%;
+      height:calc(100svh - 16px);
+      min-height:0;
+      gap:7px;
+      grid-template-rows:auto minmax(0,1fr) auto;
+    }
+
+    .topbar,.footerbar{
+      min-height:34px;
+      flex:0 0 auto;
+    }
+
+    .topbar .seal span:last-child{
+      display:none;
+    }
+
+    .progress{
+      width:min(36vw,135px);
+    }
+
+    .card{
+      height:100%;
+      min-height:0;
+      border-radius:22px;
+    }
+
+    .screen{
+      justify-content:flex-start;
+      padding:22px 15px 28px;
+      gap:0;
+    }
+
+    .screen > .eyebrow{
+      flex:0 0 auto;
+      margin-bottom:12px;
+    }
+
+    h1{font-size:clamp(34px,11vw,48px)}
+    h2{font-size:clamp(27px,8.5vw,38px)}
+    .sub{font-size:14px;line-height:1.48;margin-top:10px}
+    .hero-emojis{font-size:46px;margin:2px 0 10px}
+    .actions{margin-top:17px;padding-bottom:3px}
+
+    button{
+      min-height:48px;
+      padding:12px 14px;
+      font-size:13px;
+    }
+
+    .profile-stage{
+      grid-template-columns:1fr;
+      gap:10px;
+      max-height:none;
+      overflow:visible;
+    }
+    .portrait-card{
+      min-height:0;
+      height:220px;
+    }
+    .profile-copy{
+      padding:15px;
+    }
+    .profile-note{
+      margin-bottom:2px;
+    }
+
+    .evidence-grid,
+    .sentence,
+    .final-heart-page{
+      max-height:none;
+      overflow:visible;
+    }
+
+    .question-card{
+      padding:14px 12px;
+    }
+    .question-card h3{
+      font-size:15px;
+      line-height:1.4;
+      margin-bottom:8px;
+    }
+
+    /* A taller arena gives the escaping answer room on touch screens. */
+    .answer-row{
+      height:190px;
+      margin-top:6px;
+      overflow:hidden;
+      border-radius:15px;
+      background:rgba(216,95,145,.035);
+    }
+    .answer-row button{
+      width:calc(100% - 16px);
+      left:8px;
+      right:auto;
+      min-height:56px;
+      padding:10px 12px;
+      font-size:12px;
+      line-height:1.25;
+    }
+    .answer-row .good-answer{top:8px}
+    .answer-row .bad-answer{top:112px}
+
+    .choice-zone{
+      height:205px;
+      border-radius:18px;
+    }
+    .choice-zone .wanted{
+      width:calc(100% - 22px);
+      left:11px;
+      transform:none;
+      top:20px;
+    }
+    .choice-zone .runaway{
+      width:calc(100% - 22px);
+      left:11px;
+      right:auto;
+      transform:none;
+      top:126px;
+    }
+
+    .court-result,.mini-ruling,.legal-note{
+      font-size:11.5px;
+    }
+
+    .final-heart-page{
+      display:block;
+      width:100%;
+      margin-top:14px;
+    }
+    .us-photo{
+      width:100%;
+      height:auto;
+      min-height:0;
+      aspect-ratio:4/3;
+      margin-bottom:12px;
+    }
+    .us-photo img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+    .final-letter{
+      width:100%;
+      padding:16px 14px 20px;
+      overflow:visible;
+    }
+    .final-letter p{
+      font-size:13.5px;
+      line-height:1.65;
+      margin-bottom:14px;
+    }
+
+    .screen[data-step="11"]{
+      padding-top:20px;
+      padding-bottom:32px;
+    }
+  }
+
+  @media (max-width:390px){
+    .screen{padding-left:12px;padding-right:12px}
+    .question-card h3{font-size:14px}
+    .answer-row{height:202px}
+    .answer-row .bad-answer{top:122px}
+    .portrait-card{height:195px}
+    .final-letter p{font-size:13px}
+  }
+
 </style>
 </head>
 <body>
@@ -386,7 +605,7 @@
 <div class="shell">
   <main class="case-wrap">
     <div class="topbar">
-      <div class="seal"><div class="seal-dot">⚖️</div><span>SUPREME COURT OF RIWA</span></div>
+      <div class="seal"><div class="seal-dot">⚖️</div><span>SUPREME COURT OF AYA</span></div>
       <div class="progress" aria-label="Case progress"><div id="progressFill"></div></div>
     </div>
 
@@ -396,7 +615,7 @@
       <section class="screen active" data-step="0">
         <div class="eyebrow">CASE FILE #RWF-002Y</div>
         <div class="hero-emojis">⚖️📂👀</div>
-        <h1>RIWA vs. FADEL</h1>
+        <h1>AYA vs. FADEL</h1>
         <p class="sub">An entirely independent, scientifically rigorous, legally binding investigation into one suspiciously deleted conversation and one man’s catastrophic decision-making.</p>
         <div class="official-panel">
           <div class="metric"><strong>100%</strong><span>Independent</span></div>
@@ -470,10 +689,10 @@
         <div class="stamp">TOTALLY IMPARTIAL</div>
         <div class="eyebrow">PRELIMINARY RULING</div>
         <h2>Before we begin, the court must establish one basic fact.</h2>
-        <p class="sub">Was deleting the conversation an extremely suspicious-looking move?</p>
+        <p class="sub">Does deleting the conversation automatically prove Fadel was lying?</p>
         <div class="choice-zone" id="zone1">
-          <button class="primary wanted" id="wanted1">Yes. Obviously. 🤦‍♂️</button>
-          <button class="secondary runaway" id="run1">No, flawless decision</button>
+          <button class="primary wanted" id="wanted1">No. Suspicious, but not proof.</button>
+          <button class="secondary runaway" id="run1">Yes. Deleting it proves he lied.</button>
         </div>
         <p class="tiny">Notice: answers inconsistent with common sense may experience technical difficulties.</p>
         <div class="mini-ruling" id="ruling1"></div>
@@ -495,7 +714,7 @@
         <p class="sub">Tap each file to declassify it. The prosecution has been waiting for this moment.</p>
         <div class="evidence-grid" id="evidenceGrid">
           <div class="evidence">
-            <div class="icon">📁</div><h3>Exhibit A</h3><p>Riwa knew the other girl existed.</p>
+            <div class="icon">📁</div><h3>Exhibit A</h3><p>Aya knew the other girl existed.</p>
             <div class="classified">Tap to Declassify</div>
           </div>
           <div class="evidence">
@@ -526,7 +745,7 @@
 
       <section class="screen" data-step="5">
         <div class="eyebrow">CROSS-EXAMINATION</div>
-        <h2>Riwa, as judge, please select the fairest statement.</h2>
+        <h2>Aya, as judge, please select the fairest statement.</h2>
         <p class="sub">The court promises not to interfere with your answer. This promise has not been reviewed by legal counsel.</p>
         <div class="choice-zone" id="zone2">
           <button class="primary wanted" id="wanted2">He handled it terribly 💀</button>
@@ -545,10 +764,10 @@
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 01 — Motive Analysis</div>
-            <h3>If Fadel actually wanted something romantic with the other girl, which plan makes more sense?</h3>
+            <h3>If Fadel wanted to hide the other girl from Aya, why did he tell Aya about her first?</h3>
             <div class="answer-row">
-              <button class="secondary bad-answer">Tell Riwa the girl exists, create chaos, then delete evidence like an amateur</button>
-              <button class="primary good-answer">Maybe he really wasn't trying to start something with her</button>
+              <button class="secondary bad-answer">Because that was part of his plan.</button>
+              <button class="primary good-answer">Because he wasn't trying to hide her.</button>
             </div>
             <div class="court-result"></div>
           </div>
@@ -564,10 +783,10 @@
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 02 — Criminal Mastermind Assessment</div>
-            <h3>After the argument, Fadel spent days explaining himself, then stopped when Riwa genuinely asked for distance. This behavior most closely resembles:</h3>
+            <h3>After the argument, Fadel kept explaining himself, then stopped when Aya asked for space. What does that suggest?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">An idiot desperately trying to clean up a mess he created</button>
-              <button class="secondary bad-answer">An international mastermind operating at levels beyond human understanding</button>
+              <button class="primary good-answer">He was trying to fix what he caused.</button>
+              <button class="secondary bad-answer">He was manipulating the situation.</button>
             </div>
             <div class="court-result"></div>
           </div>
@@ -583,10 +802,10 @@
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 03 — Suspiciousness vs. Guilt</div>
-            <h3>Can somebody make a decision that looks incredibly suspicious without actually lying?</h3>
+            <h3>Can someone make a suspicious decision without actually lying?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">Yes. Unfortunately Fadel has demonstrated this experimentally.</button>
-              <button class="secondary bad-answer">No. Suspicious automatically means guilty forever.</button>
+              <button class="primary good-answer">Yes. Suspicious does not equal dishonest.</button>
+              <button class="secondary bad-answer">No. Suspicious means guilty.</button>
             </div>
             <div class="court-result"></div>
           </div>
@@ -602,10 +821,10 @@
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 04 — Final Assessment</div>
-            <h3>Which verdict best fits the evidence so far?</h3>
+            <h3>Which conclusion fits the situation best?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">Probably truthful. Definitely handled it like an idiot.</button>
-              <button class="secondary bad-answer">Secret genius liar with a flawless plan nobody can explain.</button>
+              <button class="primary good-answer">He told the truth, but handled it badly.</button>
+              <button class="secondary bad-answer">He lied and planned everything.</button>
             </div>
             <div class="court-result"></div>
           </div>
@@ -617,77 +836,116 @@
 
       <section class="screen" data-step="5e">
         <div class="eyebrow">FORMAL INTERROGATION — PART V</div>
-        <h2>Intent vs. execution.</h2>
+        <h2>Intent and responsibility.</h2>
         <p class="sub">The court will now investigate whether good intentions can coexist with impressively bad decisions.</p>
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 05 — Intent Assessment</div>
-            <h3>If someone has good intentions but handles a situation badly, does that automatically make the intentions fake?</h3>
+            <h3>Can good intentions still exist after a bad decision?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">No. It can simply mean the execution was terrible.</button>
-              <button class="secondary bad-answer">Yes. One bad move deletes all good intentions forever.</button>
+              <button class="primary good-answer">Yes. A bad decision does not erase intent.</button>
+              <button class="secondary bad-answer">No. One mistake proves bad intentions.</button>
             </div>
             <div class="court-result"></div>
           </div>
         </div>
-        <div class="legal-note">The court notes that Fadel has submitted several exhibits titled “good intention, awful execution.”</div>
+        <div class="legal-note">The court recognizes a difference between intent and the way a situation was handled.</div>
         <button class="primary question-next serious-next">Next Question →</button>
       </section>
 
       <section class="screen" data-step="5f">
         <div class="eyebrow">FORMAL INTERROGATION — PART VI</div>
-        <h2>The transparency paradox.</h2>
+        <h2>Transparency check.</h2>
         <p class="sub">A very serious legal phrase invented approximately six seconds ago.</p>
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 06 — Transparency Test</div>
-            <h3>If Fadel wanted to hide the existence of the other girl completely, would telling Aya about her in the first place be a particularly brilliant strategy?</h3>
+            <h3>If Fadel wanted a secret romance, would telling Aya about the girl make sense?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">Not exactly. That would be a very strange hiding technique.</button>
-              <button class="secondary bad-answer">Yes. Elite-level secret agent behavior.</button>
+              <button class="primary good-answer">No. That would make no sense.</button>
+              <button class="secondary bad-answer">Yes. He could still be hiding it.</button>
             </div>
             <div class="court-result"></div>
           </div>
         </div>
-        <div class="legal-note">The CIA has once again confirmed that Fadel has never worked for them.</div>
+        <div class="legal-note">The court finds that openly mentioning the girl is inconsistent with a simple concealment theory.</div>
         <button class="primary question-next serious-next">Next Question →</button>
       </section>
 
       <section class="screen" data-step="5g">
         <div class="eyebrow">FORMAL INTERROGATION — PART VII</div>
-        <h2>Respecting the judge's ruling.</h2>
+        <h2>Respecting her boundary.</h2>
         <p class="sub">The investigation now reviews what happened after Aya asked for distance.</p>
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 07 — Respect Assessment</div>
-            <h3>After trying to explain himself, Fadel eventually stopped pushing and respected Aya's request for distance. Does that count for anything?</h3>
+            <h3>When Aya asked for distance and Fadel respected it, what does that show?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">Yes. At least he eventually respected what she asked for.</button>
-              <button class="secondary bad-answer">Absolutely nothing. Delete his citizenship.</button>
+              <button class="primary good-answer">He respected her boundary.</button>
+              <button class="secondary bad-answer">It means nothing.</button>
             </div>
             <div class="court-result"></div>
           </div>
         </div>
-        <div class="legal-note">Sentence reduction request: one tiny point for eventually using his brain.</div>
+        <div class="legal-note">Respecting a request for distance is entered into the record.</div>
         <button class="primary question-next serious-next">Next Question →</button>
       </section>
 
       <section class="screen" data-step="5h">
         <div class="eyebrow">FORMAL INTERROGATION — FINAL REVIEW</div>
-        <h2>One last question before the prosecution speaks.</h2>
+        <h2>One final question before the ruling.</h2>
         <p class="sub">The court asks both sides to stop being dramatic for approximately nine seconds.</p>
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 08 — Relationship Evidence</div>
-            <h3>After everything Aya and Fadel have shared, is it at least possible that he cares deeply about her even though he handled this situation badly?</h3>
+            <h3>Can Fadel love Aya deeply and still make a serious mistake?</h3>
             <div class="answer-row">
-              <button class="primary good-answer">Yes. Caring and making mistakes can unfortunately coexist.</button>
-              <button class="secondary bad-answer">No. One mistake has erased two years from the official archives.</button>
+              <button class="primary good-answer">Yes. Love does not make someone perfect.</button>
+              <button class="secondary bad-answer">No. One mistake changes everything.</button>
             </div>
             <div class="court-result"></div>
           </div>
         </div>
-        <div class="legal-note">Archive department refuses to delete two years of evidence. Storage costs are already paid.</div>
+        <div class="legal-note">One serious mistake does not automatically erase the history between two people.</div>
+        <button class="primary question-next serious-next">Continue to Prosecution →</button>
+      </section>
+
+
+      <section class="screen" data-step="5i">
+        <div class="eyebrow">FORMAL INTERROGATION — PART IX</div>
+        <h2>The deleted conversation.</h2>
+        <p class="sub">The court now examines the decision that created approximately 97% of this entire website.</p>
+        <div class="interrogation">
+          <div class="question-card" data-serious-q>
+            <div class="qnum">Question 09 — Evidence Destruction Department</div>
+            <h3>Can deleting the chat be a bad decision without the reason being romantic?</h3>
+            <div class="answer-row">
+              <button class="primary good-answer">Yes. Bad decision, different reason.</button>
+              <button class="secondary bad-answer">No. There is only one reason.</button>
+            </div>
+            <div class="court-result"></div>
+          </div>
+        </div>
+        <div class="legal-note">Optics department has submitted a 46-page report consisting entirely of the word “BRO.”</div>
+        <button class="primary question-next serious-next">Next Question →</button>
+      </section>
+
+      <section class="screen" data-step="5j">
+        <div class="eyebrow">FORMAL INTERROGATION — PART X</div>
+        <h2>Final honesty check.</h2>
+        <p class="sub">Last question. The defendant has been instructed not to write the answer himself. He ignored this instruction.</p>
+        <div class="interrogation">
+          <div class="question-card" data-serious-q>
+            <div class="qnum">Question 10 — Final Honesty Audit</div>
+            <h3>Which statement is the fairest?</h3>
+            <div class="answer-row">
+              <button class="primary good-answer">He did not lie, but he gave Aya reasons to doubt him.</button>
+              <button class="secondary bad-answer">He lied and should admit it.</button>
+            </div>
+            <div class="court-result"></div>
+          </div>
+        </div>
+        <div class="legal-note">The final record distinguishes between lying and creating understandable doubt.</div>
         <button class="primary question-next serious-next">Continue to Prosecution →</button>
       </section>
 
@@ -697,7 +955,7 @@
         <h2>Objection sustained.</h2>
         <div class="objection">
           <div class="big">⚖️</div>
-          <div><strong>Official finding</strong><p>Riwa being suspicious was not irrational. The defendant removed the one thing that could have made his explanation easier to believe.</p></div>
+          <div><strong>Official finding</strong><p>Aya being suspicious was not irrational. The defendant removed the one thing that could have made his explanation easier to believe.</p></div>
         </div>
         <div class="objection">
           <div class="big">🫠</div>
@@ -710,7 +968,7 @@
         <div class="eyebrow">DEFENDANT STATEMENT</div>
         <h2>For the record, one distinction still matters.</h2>
         <div class="court-box">
-          <div class="court-line"><b>Charge:</b><span>Lying to Riwa.</span></div>
+          <div class="court-line"><b>Charge:</b><span>Lying to Aya.</span></div>
           <div class="court-line"><b>Plea:</b><span>Not guilty. Fadel still maintains he was telling the truth.</span></div>
           <div class="court-line"><b>Separate charge:</b><span>Deleting the conversation and creating the most suspicious possible situation.</span></div>
           <div class="court-line"><b>Plea:</b><span>Extremely guilty. No lawyer advised this behavior.</span></div>
@@ -725,7 +983,7 @@
         <div class="eyebrow">COURT RECESS</div>
         <h2>Okay, one serious minute.</h2>
         <div class="apology">
-          <strong>Riwa, I’m genuinely sorry for how I handled all of this.</strong><br><br>
+          <strong>Aya, I’m genuinely sorry for how I handled all of this.</strong><br><br>
           Deleting the conversation was a bad decision. Even though I wasn’t lying to you, I understand why deleting it made everything look worse, made my explanation harder to believe, and hurt your trust in me.<br><br>
           I’m not asking this website to decide who was “right.” I just wanted to acknowledge that part properly: I could have handled it much better, and I’m sorry that I didn’t.
         </div>
@@ -735,7 +993,7 @@
       <section class="screen" data-step="9">
         <div class="eyebrow">FINAL VERDICT</div>
         <div class="hero-emojis">⚖️🧠😂</div>
-        <h2>The Honorable Court of Riwa has concluded proceedings.</h2>
+        <h2>The Honorable Court of Aya has concluded proceedings.</h2>
         <div class="sentence">
           <div>
             <h3>Verdict</h3>
@@ -751,7 +1009,7 @@
             <ul>
               <li>Lifetime ban from deleting important chats during arguments.</li>
               <li>Mandatory use of brain before pressing “delete.”</li>
-              <li>One official laugh from Riwa, if available.</li>
+              <li>One official laugh from Aya, if available.</li>
             </ul>
           </div>
         </div>
@@ -762,7 +1020,7 @@
         <div class="eyebrow">CASE CLOSED</div>
         <div class="hero-emojis">📂✨😂</div>
         <h2>Official record sealed.</h2>
-        <p class="sub">The court thanks Judge Riwa for reviewing the evidence, surviving the defense team, and tolerating a justice system coded by the defendant.</p>
+        <p class="sub">The court thanks Judge Aya for reviewing the evidence, surviving the defense team, and tolerating a justice system coded by the defendant.</p>
         <div class="court-box">
           <div class="court-line"><b>Final note:</b><span>No pressure, no dramatic request, no hidden legal clause. Just a ridiculous way of saying: I know I handled that badly, I understand why it looked the way it did, and I’m glad we can hopefully laugh at this someday.</span></div>
         </div>
@@ -771,13 +1029,13 @@
           <button class="primary" id="stampBtn">Stamp: CASE CLOSED</button>
           <button class="primary" id="oneLastThingBtn">One Last Thing…</button>
         </div>
-        <p class="tiny" id="closedText">This ruling is final, unless Riwa says otherwise. In which case it was never final.</p>
+        <p class="tiny" id="closedText">This ruling is final, unless Aya says otherwise. In which case it was never final.</p>
       </section>
 
       <section class="screen" data-step="11">
         <div class="eyebrow">OFF THE RECORD</div>
-        <h2>No jokes for this part.</h2>
-        <p class="sub">The court is closed. This is just me talking to you.</p>
+        <h2>One last thing, Aya.</h2>
+<p class="sub">No court. No defense. No running buttons. Just me talking to you.</p>
 
         <div class="final-heart-page">
           <div class="us-photo">
@@ -818,6 +1076,17 @@
             <p>
               I don't want this page to pressure you into anything. I just wanted to say this properly:
               <strong>I'm sorry for how I handled it, I'm sorry for the hurt it caused, and I love you from my heart.</strong>
+            </p>
+
+            <p>
+              I never wanted things to go this way between us. If I could change how I handled that
+              moment, I would. Not because I want to rewrite what happened, but because I hate that
+              something I did made someone I love feel hurt, doubtful, or pushed away.
+            </p>
+
+            <p>
+              Whatever happens after this page, I wanted you to know one simple thing:
+              <strong>you are incredibly important to me, and what we have shared has always been real to me.</strong>
             </p>
 
             <p>
@@ -945,7 +1214,22 @@
     });
     run.addEventListener('pointerdown', e=>{
       e.preventDefault();
+      e.stopPropagation();
       moveButton();
+      if(e.pointerType === 'touch' || e.pointerType === 'pen'){
+        setTimeout(moveButton, 45);
+      }
+    }, {passive:false});
+    run.addEventListener('touchstart', e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      moveButton();
+    }, {passive:false});
+    run.addEventListener('click', e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      moveButton();
+      return false;
     });
     wanted.addEventListener('click',()=>{
       showToast('Statement accepted into the official record.');
@@ -955,8 +1239,8 @@
 
       if(ruling){
         ruling.textContent = suffix === '1'
-          ? '⚖️ OFFICIAL RULING: Correct. The court confirms this looked suspicious. The defense is visibly sweating.'
-          : '⚖️ OFFICIAL RULING: Correct. The defendant handled this terribly. The defense accepts the insult.';
+          ? '⚖️ OFFICIAL RULING: Correct. Deleting it looked extremely suspicious, but suspicious is not the same thing as proven lying.'
+          : '⚖️ OFFICIAL RULING: Correct. Three days of explaining looks much more like panic and damage control than a mastermind enjoying his flawless plan.';
         ruling.classList.add('show');
       }
 
@@ -995,24 +1279,28 @@
     const row = box.querySelector('.answer-row');
     const result = box.querySelector('.court-result');
     const goodResults = [
-      '✅ OFFICIAL FINDING: Annoyingly reasonable. The court awards Fadel +1 point and immediately launches an ethics investigation into itself.',
-      '✅ PROFILE MATCH: "Panicked idiot trying to fix his own mess" scores 94%. "International mastermind" scores 2%. Remaining 4% is unexplained dramatic behavior.',
-      '✅ LOGIC CONFIRMED: Looking guilty and being guilty are, inconveniently, not the same thing. The prosecution is asked to stop glaring at the calculator.',
-      '✅ DEFENSE VERDICT ACCEPTED: Truthful is plausible. Good handling is not. The court considers this a devastatingly fair compromise.',
-      '✅ INTENT FINDING: Bad execution does not automatically erase good intentions. Fadel receives one tiny legal cookie.',
-      '✅ TRANSPARENCY FINDING: Telling Aya about the girl first is a remarkably inefficient method of hiding her existence.',
-      '✅ RESPECT FINDING: The defendant eventually respected the requested distance. The court records one functioning brain cell.',
-      '✅ RELATIONSHIP FINDING: Caring deeply about someone and still making a painful mistake can both be true at the same time.'
+      '✅ FINDING: Telling Aya about the girl first does not strongly support the idea that Fadel was trying to hide her.',
+      '✅ FINDING: His behavior after the argument is consistent with someone trying to repair a situation he handled badly.',
+      '✅ FINDING: Suspicion can damage trust, but suspicion by itself is not proof of lying.',
+      '✅ FINDING: The most balanced conclusion is that Fadel may have been truthful while still handling the situation badly.',
+      '✅ FINDING: A bad decision does not automatically erase good intentions.',
+      '✅ FINDING: Openly telling Aya about the girl makes a deliberate concealment theory less convincing.',
+      '✅ FINDING: Respecting Aya’s request for distance counts as respecting her boundary.',
+      '✅ FINDING: Deep feelings and serious mistakes can exist at the same time.',
+      '✅ FINDING: Deleting the conversation can be wrong without the motive necessarily being romantic.',
+      '✅ FINAL FINDING: Fadel can maintain that he did not lie while also accepting that his actions gave Aya real reasons to doubt him.'
     ];
     const escapeTexts = [
-      ['Please reconsider, Your Honor 🤨','Objection: terrible theory','This answer has no lawyer','I refuse to be evidence','Witness protection!','404: accusation unavailable'],
-      ['Interpol says absolutely not','Mastermind? THIS guy? 💀','Requesting competency test','Theory losing confidence','I plead the fifth','Escaping jurisdiction…'],
-      ['Logic department objects','Suspicious ≠ telepathy','That feels legally ambitious','Calculator says no','This answer is panicking','Definition unavailable'],
-      ['Netflix rejected this plot','Too many plot holes','Villain arc unconfirmed','Budget cannot support theory','Appeal immediately denied','Theory has left the courtroom'],
-      ['Good intentions object','Execution was the crime','That logic is too harsh','Intentions filing appeal','Court says calm down','Answer fleeing precedent'],
-      ['Secret agent? seriously?','CIA denies involvement','Worst spy ever 💀','Cover blown immediately','Theory self-destructing','Mission failed'],
-      ['Delete citizenship?? 😭','Sentence excessive','Human rights called','Judge please relax','Appeal filed instantly','Answer deported'],
-      ['Two years deleted?','Archive says no','Storage already paid','Evidence too large','History refusing deletion','Case file locked']
+      ['Still blaming him?','That theory again?','Try the other one','Objection','No evidence','Moving away…'],
+      ['Manipulation?','That feels harsh','Try again','Not buying it','Too dramatic','Escaping'],
+      ['Suspicion = proof?','Not exactly','Weak argument','Needs evidence','Objection','Nope'],
+      ['Planned everything?','Too convenient','Plot hole','Not convinced','Try again','Rejected'],
+      ['Bad intent?','Too far','One mistake only','Not proven','Objection','Moving'],
+      ['Secret romance?','Doesn’t add up','Weak theory','Try again','Nope','Escaping'],
+      ['Means nothing?','That seems unfair','Boundary respected','Try again','Objection','Moving'],
+      ['Changes everything?','Too absolute','Not that simple','Try again','Nope','Escaping'],
+      ['Only one reason?','Too simple','Not proven','Try again','Objection','Moving'],
+      ['Forced confession?','No evidence','Too easy','Try again','Rejected','Moving']
     ];
     let escapes = 0;
 
@@ -1054,11 +1342,22 @@
       e.preventDefault();
       e.stopPropagation();
       moveBad();
-    });
+      if(e.pointerType === 'touch' || e.pointerType === 'pen'){
+        setTimeout(moveBad, 45);
+      }
+    }, {passive:false});
+
+    bad.addEventListener('touchstart', e=>{
+      e.preventDefault();
+      e.stopPropagation();
+      moveBad();
+    }, {passive:false});
+
     bad.addEventListener('click', e=>{
       e.preventDefault();
       e.stopPropagation();
       moveBad();
+      return false;
     });
 
     good.addEventListener('click',()=>{
@@ -1098,7 +1397,7 @@
   document.getElementById('appealBtn').addEventListener('click', e=>{
     e.currentTarget.textContent = 'APPEAL DENIED IN 0.02 SECONDS';
     e.currentTarget.classList.add('shake');
-    showToast('Reason: Judge Riwa has left the group chat.');
+    showToast('Reason: Judge Aya has left the group chat.');
     setTimeout(()=>e.currentTarget.classList.remove('shake'),400);
   });
 
