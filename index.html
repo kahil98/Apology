@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<title>Aya vs. FADEL — Official Case File</title>
+<title>RIWA vs. FADEL — Official Case File</title>
 <style>
   :root{
     --bg1:#fff2f7;
@@ -247,16 +247,14 @@
     width:min(760px,100%);margin:18px auto 0;display:grid;grid-template-columns:240px 1fr;
     gap:20px;align-items:stretch
   }
-.portrait-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: none;
-}
-
-.portrait-card.has-photo img {
-    display: block;
-}
+  .portrait-card{
+    position:relative;min-height:300px;border-radius:26px;overflow:hidden;
+    background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,240,247,.72));
+    border:1px solid rgba(117,65,91,.11);box-shadow:0 12px 34px rgba(126,57,89,.10)
+  }
+  .portrait-card img{
+    width:100%;height:100%;object-fit:cover;display:none
+  }
   .portrait-card.has-photo img{display:block}
   .portrait-placeholder{
     position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;
@@ -296,6 +294,44 @@
     width:min(760px,100%);margin:10px auto 0;text-align:center;font-size:11px;color:var(--muted)
   }
 
+
+  .question-next{
+    display:none;margin:15px auto 0;
+  }
+  .question-next.show{display:block;animation:popIn .28s ease}
+  @keyframes popIn{
+    from{opacity:0;transform:translateY(8px) scale(.97)}
+    to{opacity:1;transform:none}
+  }
+
+  .mini-ruling{
+    display:none;width:min(650px,100%);margin:12px auto 0;padding:11px 14px;
+    border-radius:14px;background:rgba(255,255,255,.72);border:1px solid rgba(117,65,91,.10);
+    color:var(--muted);font-size:13px;font-weight:750;text-align:center;line-height:1.45
+  }
+  .mini-ruling.show{display:block;animation:popIn .28s ease}
+
+  .final-heart-page{
+    width:min(780px,100%);margin:16px auto 0;display:grid;grid-template-columns:260px 1fr;
+    gap:18px;align-items:stretch
+  }
+  .us-photo{
+    min-height:330px;border-radius:26px;overflow:hidden;background:rgba(255,255,255,.76);
+    border:1px solid rgba(117,65,91,.11);box-shadow:0 14px 36px rgba(126,57,89,.12)
+  }
+  .us-photo img{
+    width:100%;height:100%;display:block;object-fit:cover;object-position:center
+  }
+  .final-letter{
+    border-radius:26px;background:rgba(255,255,255,.70);border:1px solid rgba(117,65,91,.10);
+    padding:22px;overflow:auto
+  }
+  .final-letter p{
+    margin:0 0 13px;color:#624d59;line-height:1.68;font-size:14px
+  }
+  .final-letter p:last-child{margin-bottom:0}
+  .final-letter strong{color:var(--ink)}
+
   @media(max-width:760px){
     body{overflow:auto}
     .shell{min-height:100svh;padding:10px}
@@ -306,6 +342,9 @@
     .screen{padding:24px 18px}
 
     .profile-stage{grid-template-columns:1fr;gap:10px;max-height:410px;overflow:auto;padding-right:3px}
+    .final-heart-page{grid-template-columns:1fr;max-height:450px;overflow:auto;padding-right:3px}
+    .us-photo{min-height:200px;height:220px}
+    .final-letter{padding:16px}
     .portrait-card{min-height:180px}
     .profile-copy{padding:16px}
     .profile-copy p{margin-top:9px;font-size:13px}
@@ -347,7 +386,7 @@
 <div class="shell">
   <main class="case-wrap">
     <div class="topbar">
-      <div class="seal"><div class="seal-dot">⚖️</div><span>SUPREME COURT OF Aya</span></div>
+      <div class="seal"><div class="seal-dot">⚖️</div><span>SUPREME COURT OF RIWA</span></div>
       <div class="progress" aria-label="Case progress"><div id="progressFill"></div></div>
     </div>
 
@@ -357,7 +396,7 @@
       <section class="screen active" data-step="0">
         <div class="eyebrow">CASE FILE #RWF-002Y</div>
         <div class="hero-emojis">⚖️📂👀</div>
-        <h1>Aya vs. FADEL</h1>
+        <h1>RIWA vs. FADEL</h1>
         <p class="sub">An entirely independent, scientifically rigorous, legally binding investigation into one suspiciously deleted conversation and one man’s catastrophic decision-making.</p>
         <div class="official-panel">
           <div class="metric"><strong>100%</strong><span>Independent</span></div>
@@ -369,92 +408,63 @@
       </section>
 
 
-    <section class="screen" data-step="cast-aya">
-  <div class="eyebrow">COURT PERSONNEL FILE • 01</div>
-  <h2>Meet the Presiding Authority: Aya</h2>
+      <section class="screen" data-step="cast-aya">
+        <div class="eyebrow">COURT PERSONNEL FILE • 01</div>
+        <h2>Meet the Presiding Authority: Aya</h2>
+        <div class="profile-stage">
+          <div class="portrait-card has-photo" id="ayaPortrait">
+            <img id="ayaPhoto" src="ayaPhoto.jpeg" alt="Aya portrait" />
+          </div>
+          <div class="profile-copy">
+            <h3 class="profile-name">Aya</h3>
+            <div class="profile-role">Princess • Judge • Occasional Threat</div>
+            <p>
+              Cute princess. White and pure from the outside <strong>and</strong> the inside.
+              Sweet, adorable, innocent-looking… and sometimes genuinely scary.
+            </p>
+            <div class="warning-strip">
+              🚨 <strong>Official warning:</strong> do not judge based on appearance.
+              The cute face is legally considered misleading evidence. It is tricky.
+            </div>
+            <div class="court-id">
+              <span>Threat level: unpredictable</span>
+              <span>Cuteness: excessive</span>
+              <span>Authority: absolute</span>
+            </div>
+          </div>
+        </div>
+        <p class="profile-note">Court records confirm that underestimating Aya has historically been a poor survival strategy.</p>
+        <div class="actions"><button class="primary" data-next>Meet the Defendant →</button></div>
+      </section>
 
-  <div class="profile-stage">
-    <div class="portrait-card has-photo" id="ayaPortrait">
-      <img id="ayaPhoto" src="ayaPhoto.jpeg" alt="Aya portrait" />
-    </div>
-
-    <div class="profile-copy">
-      <h3 class="profile-name">Aya</h3>
-      <div class="profile-role">Princess • Judge • Occasional Threat</div>
-
-      <p>
-        Cute princess. White and pure from the outside <strong>and</strong> the inside.
-        Sweet, adorable, innocent-looking… and sometimes genuinely scary.
-      </p>
-
-      <div class="warning-strip">
-        🚨 <strong>Official warning:</strong> do not judge based on appearance.
-        The cute face is legally considered misleading evidence. It is tricky.
-      </div>
-
-      <div class="court-id">
-        <span>Threat level: unpredictable</span>
-        <span>Cuteness: excessive</span>
-        <span>Authority: absolute</span>
-      </div>
-    </div>
-  </div>
-
-  <p class="profile-note">
-    Court records confirm that underestimating Aya has historically been
-    a poor survival strategy.
-  </p>
-
-  <div class="actions">
-    <button class="primary" data-next>Meet the Defendant →</button>
-  </div>
-</section>
-
-
-<section class="screen" data-step="cast-fadel">
-  <div class="eyebrow">COURT PERSONNEL FILE • 02</div>
-  <h2>Meet the Defendant: Fadel</h2>
-
-  <div class="profile-stage">
-    <div class="portrait-card has-photo" id="fadelPortrait">
-      <img id="fadelPhoto" src="fadelPhoto.jpeg" alt="Fadel portrait" />
-    </div>
-
-    <div class="profile-copy">
-      <h3 class="profile-name">Fadel</h3>
-      <div class="profile-role">
-        Defendant • Programmer • Suspiciously Self-Appointed Lawyer
-      </div>
-
-      <p>
-        Loves Aya more than anything. Doesn't lie to her, tries to be transparent,
-        very nice, very respectful, and loves from his heart.
-      </p>
-
-      <div class="warning-strip">
-        🤦‍♂️ <strong>Known defect:</strong> sometimes acts like a complete idiot,
-        especially when one simple decision can somehow become a Supreme Court case.
-      </div>
-
-      <div class="court-id">
-        <span>Intentions: good</span>
-        <span>Decision-making: under investigation</span>
-        <span>Love for Aya: unreasonably high</span>
-      </div>
-    </div>
-  </div>
-
-  <p class="profile-note">
-    Conflict of interest disclosure: Fadel programmed this court,
-    represents himself, and somehow still expects a fair trial.
-  </p>
-
-  <div class="actions">
-    <button class="primary" data-next>
-      Begin the Actual Investigation ⚖️
-    </button>
-  </div>
-</section>
+      <section class="screen" data-step="cast-fadel">
+        <div class="eyebrow">COURT PERSONNEL FILE • 02</div>
+        <h2>Meet the Defendant: Fadel</h2>
+        <div class="profile-stage">
+          <div class="portrait-card has-photo" id="fadelPortrait">
+            <img id="fadelPhoto" src="fadelPhoto.jpeg" alt="Fadel portrait" />
+          </div>
+          <div class="profile-copy">
+            <h3 class="profile-name">Fadel</h3>
+            <div class="profile-role">Defendant • Programmer • Suspiciously Self-Appointed Lawyer</div>
+            <p>
+              Loves Aya more than anything. Doesn't lie to her, tries to be transparent,
+              very nice, very respectful, and loves from his heart.
+            </p>
+            <div class="warning-strip">
+              🤦‍♂️ <strong>Known defect:</strong> sometimes acts like a complete idiot,
+              especially when one simple decision can somehow become a Supreme Court case.
+            </div>
+            <div class="court-id">
+              <span>Intentions: good</span>
+              <span>Decision-making: under investigation</span>
+              <span>Love for Aya: unreasonably high</span>
+            </div>
+          </div>
+        </div>
+        <p class="profile-note">Conflict of interest disclosure: Fadel programmed this court, represents himself, and somehow still expects a fair trial.</p>
+        <div class="actions"><button class="primary" data-next>Begin the Actual Investigation ⚖️</button></div>
+      </section>
 
       <section class="screen" data-step="1">
         <div class="stamp">TOTALLY IMPARTIAL</div>
@@ -466,6 +476,8 @@
           <button class="secondary runaway" id="run1">No, flawless decision</button>
         </div>
         <p class="tiny">Notice: answers inconsistent with common sense may experience technical difficulties.</p>
+        <div class="mini-ruling" id="ruling1"></div>
+        <button class="primary question-next" id="next1">Next Question →</button>
       </section>
 
       <section class="screen" data-step="2">
@@ -483,7 +495,7 @@
         <p class="sub">Tap each file to declassify it. The prosecution has been waiting for this moment.</p>
         <div class="evidence-grid" id="evidenceGrid">
           <div class="evidence">
-            <div class="icon">📁</div><h3>Exhibit A</h3><p>Aya knew the other girl existed.</p>
+            <div class="icon">📁</div><h3>Exhibit A</h3><p>Riwa knew the other girl existed.</p>
             <div class="classified">Tap to Declassify</div>
           </div>
           <div class="evidence">
@@ -514,13 +526,15 @@
 
       <section class="screen" data-step="5">
         <div class="eyebrow">CROSS-EXAMINATION</div>
-        <h2>Aya, as judge, please select the fairest statement.</h2>
+        <h2>Riwa, as judge, please select the fairest statement.</h2>
         <p class="sub">The court promises not to interfere with your answer. This promise has not been reviewed by legal counsel.</p>
         <div class="choice-zone" id="zone2">
           <button class="primary wanted" id="wanted2">He handled it terribly 💀</button>
           <button class="danger runaway" id="run2">He handled it perfectly</button>
         </div>
         <p class="tiny" id="runCaption">The red button has already contacted witness protection.</p>
+        <div class="mini-ruling" id="ruling2"></div>
+        <button class="primary question-next" id="next2">Next Question →</button>
       </section>
 
 
@@ -533,13 +547,14 @@
             <div class="qnum">Question 01 — Motive Analysis</div>
             <h3>If Fadel actually wanted something romantic with the other girl, which plan makes more sense?</h3>
             <div class="answer-row">
-              <button class="secondary bad-answer">Tell Aya the girl exists, create chaos, then delete evidence like an amateur</button>
+              <button class="secondary bad-answer">Tell Riwa the girl exists, create chaos, then delete evidence like an amateur</button>
               <button class="primary good-answer">Maybe he really wasn't trying to start something with her</button>
             </div>
             <div class="court-result"></div>
           </div>
         </div>
         <div class="legal-note">Court disclaimer: “makes sense” is doing heroic amounts of work in this case.</div>
+        <button class="primary question-next serious-next">Next Question →</button>
       </section>
 
       <section class="screen" data-step="5b">
@@ -549,7 +564,7 @@
         <div class="interrogation">
           <div class="question-card" data-serious-q>
             <div class="qnum">Question 02 — Criminal Mastermind Assessment</div>
-            <h3>After the argument, Fadel spent days explaining himself, then stopped when Aya genuinely asked for distance. This behavior most closely resembles:</h3>
+            <h3>After the argument, Fadel spent days explaining himself, then stopped when Riwa genuinely asked for distance. This behavior most closely resembles:</h3>
             <div class="answer-row">
               <button class="primary good-answer">An idiot desperately trying to clean up a mess he created</button>
               <button class="secondary bad-answer">An international mastermind operating at levels beyond human understanding</button>
@@ -558,6 +573,7 @@
           </div>
         </div>
         <div class="legal-note">Interpol has declined to comment, mostly because nobody contacted Interpol.</div>
+        <button class="primary question-next serious-next">Next Question →</button>
       </section>
 
       <section class="screen" data-step="5c">
@@ -576,6 +592,7 @@
           </div>
         </div>
         <div class="legal-note">Peer-reviewed by: Fadel, Fadel's laptop, and one browser tab opened at 2:17 AM.</div>
+        <button class="primary question-next serious-next">Next Question →</button>
       </section>
 
       <section class="screen" data-step="5d">
@@ -594,6 +611,84 @@
           </div>
         </div>
         <div class="legal-note">The defense rests. Mostly because the defense is exhausted from defending itself.</div>
+        <button class="primary question-next serious-next">Next Question →</button>
+      </section>
+
+
+      <section class="screen" data-step="5e">
+        <div class="eyebrow">FORMAL INTERROGATION — PART V</div>
+        <h2>Intent vs. execution.</h2>
+        <p class="sub">The court will now investigate whether good intentions can coexist with impressively bad decisions.</p>
+        <div class="interrogation">
+          <div class="question-card" data-serious-q>
+            <div class="qnum">Question 05 — Intent Assessment</div>
+            <h3>If someone has good intentions but handles a situation badly, does that automatically make the intentions fake?</h3>
+            <div class="answer-row">
+              <button class="primary good-answer">No. It can simply mean the execution was terrible.</button>
+              <button class="secondary bad-answer">Yes. One bad move deletes all good intentions forever.</button>
+            </div>
+            <div class="court-result"></div>
+          </div>
+        </div>
+        <div class="legal-note">The court notes that Fadel has submitted several exhibits titled “good intention, awful execution.”</div>
+        <button class="primary question-next serious-next">Next Question →</button>
+      </section>
+
+      <section class="screen" data-step="5f">
+        <div class="eyebrow">FORMAL INTERROGATION — PART VI</div>
+        <h2>The transparency paradox.</h2>
+        <p class="sub">A very serious legal phrase invented approximately six seconds ago.</p>
+        <div class="interrogation">
+          <div class="question-card" data-serious-q>
+            <div class="qnum">Question 06 — Transparency Test</div>
+            <h3>If Fadel wanted to hide the existence of the other girl completely, would telling Aya about her in the first place be a particularly brilliant strategy?</h3>
+            <div class="answer-row">
+              <button class="primary good-answer">Not exactly. That would be a very strange hiding technique.</button>
+              <button class="secondary bad-answer">Yes. Elite-level secret agent behavior.</button>
+            </div>
+            <div class="court-result"></div>
+          </div>
+        </div>
+        <div class="legal-note">The CIA has once again confirmed that Fadel has never worked for them.</div>
+        <button class="primary question-next serious-next">Next Question →</button>
+      </section>
+
+      <section class="screen" data-step="5g">
+        <div class="eyebrow">FORMAL INTERROGATION — PART VII</div>
+        <h2>Respecting the judge's ruling.</h2>
+        <p class="sub">The investigation now reviews what happened after Aya asked for distance.</p>
+        <div class="interrogation">
+          <div class="question-card" data-serious-q>
+            <div class="qnum">Question 07 — Respect Assessment</div>
+            <h3>After trying to explain himself, Fadel eventually stopped pushing and respected Aya's request for distance. Does that count for anything?</h3>
+            <div class="answer-row">
+              <button class="primary good-answer">Yes. At least he eventually respected what she asked for.</button>
+              <button class="secondary bad-answer">Absolutely nothing. Delete his citizenship.</button>
+            </div>
+            <div class="court-result"></div>
+          </div>
+        </div>
+        <div class="legal-note">Sentence reduction request: one tiny point for eventually using his brain.</div>
+        <button class="primary question-next serious-next">Next Question →</button>
+      </section>
+
+      <section class="screen" data-step="5h">
+        <div class="eyebrow">FORMAL INTERROGATION — FINAL REVIEW</div>
+        <h2>One last question before the prosecution speaks.</h2>
+        <p class="sub">The court asks both sides to stop being dramatic for approximately nine seconds.</p>
+        <div class="interrogation">
+          <div class="question-card" data-serious-q>
+            <div class="qnum">Question 08 — Relationship Evidence</div>
+            <h3>After everything Aya and Fadel have shared, is it at least possible that he cares deeply about her even though he handled this situation badly?</h3>
+            <div class="answer-row">
+              <button class="primary good-answer">Yes. Caring and making mistakes can unfortunately coexist.</button>
+              <button class="secondary bad-answer">No. One mistake has erased two years from the official archives.</button>
+            </div>
+            <div class="court-result"></div>
+          </div>
+        </div>
+        <div class="legal-note">Archive department refuses to delete two years of evidence. Storage costs are already paid.</div>
+        <button class="primary question-next serious-next">Continue to Prosecution →</button>
       </section>
 
       <section class="screen" data-step="6">
@@ -602,7 +697,7 @@
         <h2>Objection sustained.</h2>
         <div class="objection">
           <div class="big">⚖️</div>
-          <div><strong>Official finding</strong><p>Aya being suspicious was not irrational. The defendant removed the one thing that could have made his explanation easier to believe.</p></div>
+          <div><strong>Official finding</strong><p>Riwa being suspicious was not irrational. The defendant removed the one thing that could have made his explanation easier to believe.</p></div>
         </div>
         <div class="objection">
           <div class="big">🫠</div>
@@ -615,7 +710,7 @@
         <div class="eyebrow">DEFENDANT STATEMENT</div>
         <h2>For the record, one distinction still matters.</h2>
         <div class="court-box">
-          <div class="court-line"><b>Charge:</b><span>Lying to Aya.</span></div>
+          <div class="court-line"><b>Charge:</b><span>Lying to Riwa.</span></div>
           <div class="court-line"><b>Plea:</b><span>Not guilty. Fadel still maintains he was telling the truth.</span></div>
           <div class="court-line"><b>Separate charge:</b><span>Deleting the conversation and creating the most suspicious possible situation.</span></div>
           <div class="court-line"><b>Plea:</b><span>Extremely guilty. No lawyer advised this behavior.</span></div>
@@ -630,7 +725,7 @@
         <div class="eyebrow">COURT RECESS</div>
         <h2>Okay, one serious minute.</h2>
         <div class="apology">
-          <strong>Aya, I’m genuinely sorry for how I handled all of this.</strong><br><br>
+          <strong>Riwa, I’m genuinely sorry for how I handled all of this.</strong><br><br>
           Deleting the conversation was a bad decision. Even though I wasn’t lying to you, I understand why deleting it made everything look worse, made my explanation harder to believe, and hurt your trust in me.<br><br>
           I’m not asking this website to decide who was “right.” I just wanted to acknowledge that part properly: I could have handled it much better, and I’m sorry that I didn’t.
         </div>
@@ -640,7 +735,7 @@
       <section class="screen" data-step="9">
         <div class="eyebrow">FINAL VERDICT</div>
         <div class="hero-emojis">⚖️🧠😂</div>
-        <h2>The Honorable Court of Aya has concluded proceedings.</h2>
+        <h2>The Honorable Court of Riwa has concluded proceedings.</h2>
         <div class="sentence">
           <div>
             <h3>Verdict</h3>
@@ -656,7 +751,7 @@
             <ul>
               <li>Lifetime ban from deleting important chats during arguments.</li>
               <li>Mandatory use of brain before pressing “delete.”</li>
-              <li>One official laugh from Aya, if available.</li>
+              <li>One official laugh from Riwa, if available.</li>
             </ul>
           </div>
         </div>
@@ -667,15 +762,75 @@
         <div class="eyebrow">CASE CLOSED</div>
         <div class="hero-emojis">📂✨😂</div>
         <h2>Official record sealed.</h2>
-        <p class="sub">The court thanks Judge Aya for reviewing the evidence, surviving the defense team, and tolerating a justice system coded by the defendant.</p>
+        <p class="sub">The court thanks Judge Riwa for reviewing the evidence, surviving the defense team, and tolerating a justice system coded by the defendant.</p>
         <div class="court-box">
           <div class="court-line"><b>Final note:</b><span>No pressure, no dramatic request, no hidden legal clause. Just a ridiculous way of saying: I know I handled that badly, I understand why it looked the way it did, and I’m glad we can hopefully laugh at this someday.</span></div>
         </div>
         <div class="actions">
           <button class="secondary" id="restartBtn">Reopen Case for No Reason</button>
           <button class="primary" id="stampBtn">Stamp: CASE CLOSED</button>
+          <button class="primary" id="oneLastThingBtn">One Last Thing…</button>
         </div>
-        <p class="tiny" id="closedText">This ruling is final, unless Aya says otherwise. In which case it was never final.</p>
+        <p class="tiny" id="closedText">This ruling is final, unless Riwa says otherwise. In which case it was never final.</p>
+      </section>
+
+      <section class="screen" data-step="11">
+        <div class="eyebrow">OFF THE RECORD</div>
+        <h2>No jokes for this part.</h2>
+        <p class="sub">The court is closed. This is just me talking to you.</p>
+
+        <div class="final-heart-page">
+          <div class="us-photo">
+            <img src="usPhoto.jpeg" alt="Aya and Fadel together" />
+          </div>
+
+          <div class="final-letter">
+            <p>
+              <strong>Aya, I really didn't want things between us to go the way they did.</strong>
+              I never wanted one bad situation and one terrible decision from me to turn into
+              something that hurt you or made you feel like you couldn't trust me.
+            </p>
+
+            <p>
+              I know deleting that conversation made everything look so much worse.
+              I understand why you became suspicious, and I understand why my words became
+              difficult to believe after that. I wish I had handled it differently from the beginning.
+            </p>
+
+            <p>
+              But through all of this, one thing never changed for me:
+              <strong>I love you so much.</strong> You mean more to me than I can properly explain
+              in one website, one argument, or even all the stupid jokes in this court case.
+            </p>
+
+            <p>
+              The last two years with you have meant a lot to me. The conversations, the laughs,
+              the stupid moments, the serious moments, and simply having you in my life are things
+              I never treated as meaningless.
+            </p>
+
+            <p>
+              I wasn't trying to hurt you, replace you, or make you feel unimportant.
+              I handled something badly, and I hate that it ended up making you feel the opposite
+              of what I actually feel about you.
+            </p>
+
+            <p>
+              I don't want this page to pressure you into anything. I just wanted to say this properly:
+              <strong>I'm sorry for how I handled it, I'm sorry for the hurt it caused, and I love you from my heart.</strong>
+            </p>
+
+            <p>
+              And for the official record… I still maintain that I wasn't lying.
+              I was simply, as this entire investigation has scientifically proven,
+              an idiot with very good intentions. 🤦‍♂️
+            </p>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="secondary" id="restartFromEnd">Reopen This Ridiculous Case</button>
+        </div>
       </section>
     </section>
 
@@ -718,6 +873,11 @@
     }
   }
 
+  function goToStep(stepName){
+    const targetIndex = screens.findIndex(s => String(s.dataset.step) === String(stepName));
+    if(targetIndex !== -1) goTo(targetIndex);
+  }
+
 
   function setupPortraitUpload(inputId, imgId, cardId){
     const input = document.getElementById(inputId);
@@ -742,8 +902,6 @@
     });
   }
 
-  setupPortraitUpload('ayaPhotoInput','ayaPhoto','ayaPortrait');
-  setupPortraitUpload('fadelPhotoInput','fadelPhoto','fadelPortrait');
 
   document.querySelectorAll('[data-next]').forEach(btn=>btn.addEventListener('click',()=>goTo(step+1)));
 
@@ -791,7 +949,20 @@
     });
     wanted.addEventListener('click',()=>{
       showToast('Statement accepted into the official record.');
-      setTimeout(()=>goTo(step+1), 450);
+      const suffix = wantedId.replace('wanted','');
+      const ruling = document.getElementById('ruling'+suffix);
+      const nextBtn = document.getElementById('next'+suffix);
+
+      if(ruling){
+        ruling.textContent = suffix === '1'
+          ? '⚖️ OFFICIAL RULING: Correct. The court confirms this looked suspicious. The defense is visibly sweating.'
+          : '⚖️ OFFICIAL RULING: Correct. The defendant handled this terribly. The defense accepts the insult.';
+        ruling.classList.add('show');
+      }
+
+      run.style.opacity = '.28';
+      run.style.pointerEvents = 'none';
+      if(nextBtn) nextBtn.classList.add('show');
     });
   }
 
@@ -813,6 +984,9 @@
     'I am leaving the country'
   ]);
 
+  document.getElementById('next1')?.addEventListener('click',()=>goTo(step+1));
+  document.getElementById('next2')?.addEventListener('click',()=>goTo(step+1));
+
 
   // Serious-looking interrogation screens: every anti-Fadel answer now runs away.
   document.querySelectorAll('[data-serious-q]').forEach((box, idx)=>{
@@ -824,13 +998,21 @@
       '✅ OFFICIAL FINDING: Annoyingly reasonable. The court awards Fadel +1 point and immediately launches an ethics investigation into itself.',
       '✅ PROFILE MATCH: "Panicked idiot trying to fix his own mess" scores 94%. "International mastermind" scores 2%. Remaining 4% is unexplained dramatic behavior.',
       '✅ LOGIC CONFIRMED: Looking guilty and being guilty are, inconveniently, not the same thing. The prosecution is asked to stop glaring at the calculator.',
-      '✅ DEFENSE VERDICT ACCEPTED: Truthful is plausible. Good handling is not. The court considers this a devastatingly fair compromise.'
+      '✅ DEFENSE VERDICT ACCEPTED: Truthful is plausible. Good handling is not. The court considers this a devastatingly fair compromise.',
+      '✅ INTENT FINDING: Bad execution does not automatically erase good intentions. Fadel receives one tiny legal cookie.',
+      '✅ TRANSPARENCY FINDING: Telling Aya about the girl first is a remarkably inefficient method of hiding her existence.',
+      '✅ RESPECT FINDING: The defendant eventually respected the requested distance. The court records one functioning brain cell.',
+      '✅ RELATIONSHIP FINDING: Caring deeply about someone and still making a painful mistake can both be true at the same time.'
     ];
     const escapeTexts = [
       ['Please reconsider, Your Honor 🤨','Objection: terrible theory','This answer has no lawyer','I refuse to be evidence','Witness protection!','404: accusation unavailable'],
       ['Interpol says absolutely not','Mastermind? THIS guy? 💀','Requesting competency test','Theory losing confidence','I plead the fifth','Escaping jurisdiction…'],
       ['Logic department objects','Suspicious ≠ telepathy','That feels legally ambitious','Calculator says no','This answer is panicking','Definition unavailable'],
-      ['Netflix rejected this plot','Too many plot holes','Villain arc unconfirmed','Budget cannot support theory','Appeal immediately denied','Theory has left the courtroom']
+      ['Netflix rejected this plot','Too many plot holes','Villain arc unconfirmed','Budget cannot support theory','Appeal immediately denied','Theory has left the courtroom'],
+      ['Good intentions object','Execution was the crime','That logic is too harsh','Intentions filing appeal','Court says calm down','Answer fleeing precedent'],
+      ['Secret agent? seriously?','CIA denies involvement','Worst spy ever 💀','Cover blown immediately','Theory self-destructing','Mission failed'],
+      ['Delete citizenship?? 😭','Sentence excessive','Human rights called','Judge please relax','Appeal filed instantly','Answer deported'],
+      ['Two years deleted?','Archive says no','Storage already paid','Evidence too large','History refusing deletion','Case file locked']
     ];
     let escapes = 0;
 
@@ -885,8 +1067,15 @@
       good.style.transform='scale(1.04)';
       bad.style.opacity='.28';
       bad.style.pointerEvents='none';
-      setTimeout(()=>goTo(step+1), 1500);
+
+      const currentScreen = box.closest('.screen');
+      const nextBtn = currentScreen?.querySelector('.serious-next');
+      if(nextBtn) nextBtn.classList.add('show');
     });
+  });
+
+  document.querySelectorAll('.serious-next').forEach(btn=>{
+    btn.addEventListener('click',()=>goTo(step+1));
   });
 
   const evidence = [...document.querySelectorAll('.evidence')];
@@ -909,7 +1098,7 @@
   document.getElementById('appealBtn').addEventListener('click', e=>{
     e.currentTarget.textContent = 'APPEAL DENIED IN 0.02 SECONDS';
     e.currentTarget.classList.add('shake');
-    showToast('Reason: Judge Aya has left the group chat.');
+    showToast('Reason: Judge Riwa has left the group chat.');
     setTimeout(()=>e.currentTarget.classList.remove('shake'),400);
   });
 
@@ -931,8 +1120,10 @@
   document.getElementById('finalBtn').addEventListener('click',()=>{
     confettiBurst(95);
     showToast('⚖️ Sentence entered into the permanent record.');
-    setTimeout(()=>goTo(10), 700);
+    setTimeout(()=>goToStep('10'), 700);
   });
+
+  document.getElementById('oneLastThingBtn')?.addEventListener('click',()=>goToStep('11'));
 
   document.getElementById('stampBtn').addEventListener('click', e=>{
     e.currentTarget.textContent = 'CASE CLOSED ✓';
@@ -941,13 +1132,15 @@
     confettiBurst(45);
   });
 
+  document.getElementById('restartFromEnd')?.addEventListener('click',()=>goToStep('0'));
+
   document.getElementById('restartBtn').addEventListener('click',()=>{
     document.querySelectorAll('.evidence').forEach(el=>el.classList.remove('revealed'));
     opened = 0;
     evidenceNext.disabled = true;
     evidenceNext.style.opacity = '.42';
     document.querySelectorAll('.fill').forEach(f=>f.style.width='0');
-    goTo(0);
+    goToStep('0');
   });
 
   window.addEventListener('resize',()=>{
