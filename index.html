@@ -247,14 +247,16 @@
     width:min(760px,100%);margin:18px auto 0;display:grid;grid-template-columns:240px 1fr;
     gap:20px;align-items:stretch
   }
-  .portrait-card{
-    position:relative;min-height:300px;border-radius:26px;overflow:hidden;
-    background:linear-gradient(145deg,rgba(255,255,255,.86),rgba(255,240,247,.72));
-    border:1px solid rgba(117,65,91,.11);box-shadow:0 12px 34px rgba(126,57,89,.10)
-  }
-  .portrait-card img{
-    width:100%;height:100%;object-fit:cover;display:none
-  }
+.portrait-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.portrait-card.has-photo img {
+    display: block;
+}
   .portrait-card.has-photo img{display:block}
   .portrait-placeholder{
     position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;
