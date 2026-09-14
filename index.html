@@ -594,6 +594,54 @@
     .final-letter p{font-size:13px}
   }
 
+
+  /* ===== V9 PHOTO DISPLAY + JOKE PAGE ===== */
+  .portrait-card,.us-photo,.joke-photo{
+    background:radial-gradient(circle at 50% 35%,rgba(255,255,255,.96),rgba(255,230,240,.74));
+  }
+  .portrait-card img{
+    width:100%;height:100%;object-fit:contain;object-position:center;padding:6px;
+  }
+  .joke-page{justify-content:center}
+  .joke-photo{
+    width:min(390px,100%);height:min(390px,46vh);margin:18px auto 0;border-radius:26px;
+    overflow:hidden;border:1px solid rgba(117,65,91,.11);box-shadow:0 16px 42px rgba(126,57,89,.14)
+  }
+  .joke-photo img{
+    width:100%;height:100%;display:block;object-fit:contain;object-position:center;padding:6px
+  }
+  .joke-caption{
+    width:min(600px,100%);margin:14px auto 0;padding:13px 16px;border-radius:17px;
+    background:rgba(255,255,255,.67);border:1px solid rgba(117,65,91,.10);text-align:center
+  }
+  .joke-caption strong{display:block;font-size:19px;color:var(--ink)}
+  .joke-caption span{display:block;margin-top:4px;color:var(--muted);font-size:12px;line-height:1.45}
+  .us-photo{min-height:0;height:390px}
+  .us-photo img{width:100%;height:100%;object-fit:contain;object-position:center;padding:6px}
+
+  @media(max-width:760px){
+    .portrait-card{
+      width:min(330px,100%);height:auto!important;min-height:0!important;aspect-ratio:4/5;margin:0 auto
+    }
+    .portrait-card img{object-fit:contain!important;padding:4px}
+    .joke-page{justify-content:flex-start}
+    .joke-photo{width:min(340px,100%);height:auto;aspect-ratio:1/1;margin-top:14px}
+    .joke-photo img{object-fit:contain;padding:4px}
+    .joke-caption{margin-top:11px}
+    .us-photo{
+      width:100%;height:auto!important;aspect-ratio:auto!important;min-height:0!important;
+      display:flex;justify-content:center;align-items:center
+    }
+    .us-photo img{
+      width:100%;height:auto!important;max-height:none;object-fit:contain!important;padding:4px
+    }
+  }
+  @media(max-width:390px){
+    .portrait-card{width:min(285px,100%)}
+    .joke-photo{width:min(285px,100%)}
+    .joke-caption strong{font-size:17px}
+  }
+
 </style>
 </head>
 <body>
@@ -1027,9 +1075,25 @@
         <div class="actions">
           <button class="secondary" id="restartBtn">Reopen Case for No Reason</button>
           <button class="primary" id="stampBtn">Stamp: CASE CLOSED</button>
-          <button class="primary" id="oneLastThingBtn">One Last Thing…</button>
+          <button class="primary" id="oneLastThingBtn">Wait… One More Exhibit 👀</button>
         </div>
         <p class="tiny" id="closedText">This ruling is final, unless Aya says otherwise. In which case it was never final.</p>
+      </section>
+
+
+      <section class="screen joke-page" data-step="joke">
+        <div class="eyebrow">LAST-MINUTE EVIDENCE</div>
+        <h2>Wait… the court found one more photo.</h2>
+        <div class="joke-photo">
+          <img src="joke.jpeg" alt="Unexpected evidence" />
+        </div>
+        <div class="joke-caption">
+          <strong>Oops… my mistake. 😭</strong>
+          <span>The defense would like to withdraw this evidence immediately.</span>
+        </div>
+        <div class="actions">
+          <button class="primary" id="jokeNextBtn">Okay okay… one last thing →</button>
+        </div>
       </section>
 
       <section class="screen" data-step="11">
@@ -1422,7 +1486,8 @@
     setTimeout(()=>goToStep('10'), 700);
   });
 
-  document.getElementById('oneLastThingBtn')?.addEventListener('click',()=>goToStep('11'));
+  document.getElementById('oneLastThingBtn')?.addEventListener('click',()=>goToStep('joke'));
+  document.getElementById('jokeNextBtn')?.addEventListener('click',()=>goToStep('11'));
 
   document.getElementById('stampBtn').addEventListener('click', e=>{
     e.currentTarget.textContent = 'CASE CLOSED ✓';
